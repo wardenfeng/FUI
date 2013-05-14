@@ -6,7 +6,7 @@ package com.feng
 	import com.feng.components.FList;
 	import com.feng.components.FVScrollBar;
 	import com.feng.components.FVSlider;
-	
+
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.Stage;
@@ -52,27 +52,27 @@ package com.feng
 				container = mc.getChildAt(i) as DisplayObjectContainer;
 				if (childMc)
 				{
-					if (childMc.name.substring(childMc.name.length - BUTTON_SIGN.length) == BUTTON_SIGN)
+					if (childMc.name.substr(-BUTTON_SIGN.length) == BUTTON_SIGN)
 					{
 						FButton.getInstance(childMc);
 					}
-					else if (childMc.name.substring(childMc.name.length - HSlider_SIGN.length) == HSlider_SIGN)
+					else if (childMc.name.substr(-HSlider_SIGN.length) == HSlider_SIGN)
 					{
 						FHSlider.getInstance(childMc);
 					}
-					else if (childMc.name.substring(childMc.name.length - VSlider_SIGN.length) == VSlider_SIGN)
+					else if (childMc.name.substr(-VSlider_SIGN.length) == VSlider_SIGN)
 					{
 						FVSlider.getInstance(childMc);
 					}
-					else if (childMc.name.substring(childMc.name.length - HScrollBar_SIGN.length) == HScrollBar_SIGN)
+					else if (childMc.name.substr(-HScrollBar_SIGN.length) == HScrollBar_SIGN)
 					{
 						FHScrollBar.getInstance(childMc);
 					}
-					else if (childMc.name.substring(childMc.name.length - VScrollBar_SIGN.length) == VScrollBar_SIGN)
+					else if (childMc.name.substr(-VScrollBar_SIGN.length) == VScrollBar_SIGN)
 					{
 						FVScrollBar.getInstance(childMc);
 					}
-					else if (childMc.name.substring(childMc.name.length - List_SIGN.length) == List_SIGN)
+					else if (childMc.name.substr(-List_SIGN.length) == List_SIGN)
 					{
 						FList.getInstance(childMc);
 					}

@@ -23,6 +23,12 @@ package com.test
 			super(listItemMc, data);
 		}
 
+		override protected function addChildren():void
+		{
+			super.addChildren();
+			_skin.label.mouseEnabled = false;
+		}
+
 		override public function updateView():void
 		{
 			if (_data == null)

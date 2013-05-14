@@ -77,7 +77,10 @@ package com.feng.components
 			_skin.gotoAndStop(up_frame);
 
 			if (_skin["labelTxt"])
+			{
 				_label = _skin["labelTxt"];
+				_label.mouseEnabled = false;
+			}
 
 			_skin.addEventListener(MouseEvent.MOUSE_DOWN, onMouseGoDown);
 			_skin.addEventListener(MouseEvent.ROLL_OVER, onMouseOver);
