@@ -1,11 +1,14 @@
 package com.feng.components
 {
+	import com.bit101.components.Style;
+	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.filters.DropShadowFilter;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 
@@ -49,6 +52,16 @@ package com.feng.components
 		protected function addChildren():void
 		{
 
+		}
+		
+		/**
+		 * DropShadowFilter factory method, used in many of the components.
+		 * @param dist The distance of the shadow.
+		 * @param knockout Whether or not to create a knocked out shadow.
+		 */
+		protected function getShadow(dist:Number, knockout:Boolean = false):DropShadowFilter
+		{
+			return new DropShadowFilter(dist, 45, Style.DROPSHADOW, 1, dist, dist, .3, 1, knockout);
 		}
 
 		/**

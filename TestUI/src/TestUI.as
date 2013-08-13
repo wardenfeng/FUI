@@ -15,6 +15,7 @@ package
 	
 	import fla.ui.UITest;
 
+	[SWF(width = "1000", height = "580", frameRate = "30"]
 	public class TestUI extends Sprite
 	{
 		public function TestUI()

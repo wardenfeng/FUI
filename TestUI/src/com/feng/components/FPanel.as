@@ -19,10 +19,12 @@ package com.feng.components
 
 		protected var _mask:Sprite;
 
+		protected var _shadow:Boolean = true;
+		
 		/**
 		 * Container for content added to this panel. This is masked, so best to add children to content, rather than directly to the panel.
 		 */
-		public var content:Sprite;
+		public var content:MovieClip;
 
 		public function FPanel(panelMc:MovieClip)
 		{
@@ -35,6 +37,28 @@ package com.feng.components
 			_mask.mouseEnabled = false;
 
 			content = _skin.content;
+			
+			skin.filters = [getShadow(2, true)];
+		}
+		
+		/**
+		 * Gets / sets whether or not this Panel will have an inner shadow.
+		 */
+		public function set shadow(b:Boolean):void
+		{
+			_shadow = b;
+			if(_shadow)
+			{
+				skin.filters = [getShadow(2, true)];
+			}
+			else
+			{
+				skin.filters = [];
+			}
+		}
+		public function get shadow():Boolean
+		{
+			return _shadow;
 		}
 
 		override public function get width():Number
