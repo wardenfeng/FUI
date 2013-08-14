@@ -33,6 +33,8 @@ package com.feng.components
 		protected var _mouseOver:Boolean = false;
 
 		protected var _alternate:Boolean = false;
+		
+		protected var _index:int;
 
 		public function FListItem(listItemMc:MovieClip, data:Object = null)
 		{
@@ -48,6 +50,7 @@ package com.feng.components
 			super.init();
 
 			_skin.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
+			_skin.addEventListener(MouseEvent.CLICK,onClick);
 		}
 
 		/**
@@ -60,6 +63,8 @@ package com.feng.components
 			_itemAlternateBack = _skin.itemAlternateBack;
 			_itemRolloverBack = _skin.itemRolloverBack;
 			_itemSelectedBack = _skin.itemSelectedBack;
+			
+			_skin.label.mouseEnabled = false;
 		}
 
 		///////////////////////////////////
@@ -82,13 +87,33 @@ package com.feng.components
 
 		public function updateView():void
 		{
-
+			if (_data == null)
+			{
+				_skin.label.text = "";
+			}
+			else if (_data is String)
+			{
+				_skin.label.text = _data as String;
+			}
+			else if (_data.hasOwnProperty("label") && _data.label is String)
+			{
+				_skin.label.text = _data.label;
+			}
+			else
+			{
+				_skin.label.text = _data.toString();
+			}
 		}
 
 
 		///////////////////////////////////
 		// event handlers
 		///////////////////////////////////
+		
+		protected function onClick(event:MouseEvent):void
+		{
+			dispatchEvent(event);
+		}
 
 		/**
 		 * Called when the user rolls the mouse over the item. Changes the background color.
@@ -152,6 +177,16 @@ package com.feng.components
 		public function get alternate():Boolean
 		{
 			return _alternate;
+		}
+		
+		public function get index():int
+		{
+			return _index;
+		}
+		
+		public function set index(value:int):void
+		{
+			_index = value;
 		}
 	}
 }

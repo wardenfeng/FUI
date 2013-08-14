@@ -77,17 +77,19 @@
 		protected function makeListItems():void
 		{
 			var listItemMc:MovieClip;
-			var listItem:FListItem;
+			var item:FListItem;
 			for (var i:int = 0; i < _itemHolder.numChildren; i++)
 			{
 				listItemMc = _itemHolder.getChildAt(i) as MovieClip;
 				if (listItemMc && listItemMc.name.indexOf(ITEM_NAME) != -1)
 				{
 					var index:int = int(listItemMc.name.substring(listItemMc.name.indexOf(ITEM_NAME) + ITEM_NAME.length));
-					listItem = _listItemClass.getInstance(listItemMc);
-					listItem.x = 0;
-					listItem.y = index * listItemHeight;
-					_listItems[index] = listItem;
+					item = _listItemClass.getInstance(listItemMc);
+					item.x = 0;
+					item.y = index * listItemHeight;
+					_listItems[index] = item;
+					item.index = index;
+					item.addEventListener(MouseEvent.CLICK, onSelect);
 				}
 			}
 		}
@@ -104,6 +106,7 @@
 				{
 					item.data = _items[offset + i];
 					item.visible = true;
+					item.index = offset + i;
 				}
 				else
 				{
@@ -250,15 +253,15 @@
 			if (!(event.target is FListItem))
 				return;
 
-			var offset:int = _scrollbar.value;
-
-			for (var i:int = 0; i < _itemHolder.numChildren; i++)
+			for (var i:int = 0; i < _listItems.length; i++)
 			{
-				if (_itemHolder.getChildAt(i) == event.target)
-					_selectedIndex = i + offset;
-				FListItem(_itemHolder.getChildAt(i)).selected = false;
+				FListItem(_listItems[i]).selected = false;
 			}
-			FListItem(event.target).selected = true;
+			
+			var fListItem:FListItem = FListItem(event.target);
+			selectedIndex = fListItem.index;
+			fListItem.selected = true;
+
 			dispatchEvent(new Event(Event.SELECT));
 		}
 

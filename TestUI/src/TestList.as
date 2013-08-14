@@ -16,6 +16,7 @@ package
 
 			var listTest:ListTest = new ListTest();
 			addChild(listTest);
+			listTest.x = 100;
 			var tList:FList = FList.getInstance(listTest.tList);
 			tList.listItemClass = MyListItem;
 			tList.alternateRows = true;
